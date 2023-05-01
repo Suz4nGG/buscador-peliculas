@@ -3,13 +3,10 @@ import { useState, useEffect, useRef } from "react";
 export function useSearch() {
   const [search, setSearch] = useState('')
   const [error, setError] = useState(null)
-  const isFirstRender = useRef()
+  const isFirstRender = useRef(search)
 
   useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = search === ''
-      return
-    }
+    if (search === isFirstRender.current) return;
     if (search === "") {
       setError("No puedes buscar una película vacía");
       return;
@@ -24,5 +21,5 @@ export function useSearch() {
     }
     setError(null);
   }, [search])
-  return {error, search, setSearch}
+  return {error, search, setSearch, isFirstRender}
 }

@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 
-function ListOfMovies ({movies}) {
+function ListOfMovies ({ movies }) {
 return (
-  <ul>
+  <ul className="movies">
     {movies.map((movie) => (
       <li key={movie.id}>
         <h3>{movie.title}</h3>
@@ -17,8 +18,8 @@ function HasNoMovies () {
   return <p>No se encontraron peliculas</p>
 }
 
-export function Movies({movies}) {
-  const hasMovies = movies.length > 0;
+export function Movies({ movies }) {
+  const hasMovies = movies?.length > 0;
   return (
     <div>{hasMovies ? <ListOfMovies movies={movies} /> : <HasNoMovies />}</div>
   );
